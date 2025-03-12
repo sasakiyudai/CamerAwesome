@@ -154,10 +154,10 @@ class PreviewFitWidget extends StatelessWidget {
     final transformController = TransformationController();
     final transform =
         Matrix4.identity()
-          // すでにある拡大縮小を先に適用
-          ..scale(scale)
           // ここで 90 度回転を追加する (反時計回り→時計回りに直したいなら -pi/2)
-          ..rotateZ(-pi / 2); // -pi/2 = -90度
+          ..rotateZ(-pi / 2) // -pi/2 = -90度
+          // すでにある拡大縮小を適用
+          ..scale(scale);
 
     return Align(
       alignment: alignment,
