@@ -150,13 +150,13 @@ class PreviewFitWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 既存のスケーリング処理
     final transformController = TransformationController();
-    final transform =
-        Matrix4.identity()
-          // ここで 90 度回転を追加する (反時計回り→時計回りに直したいなら -pi/2)
-          ..rotateZ(-pi / 2) // -pi/2 = -90度
-          // すでにある拡大縮小を適用
+    final centerX = previewSize.width / 2;
+    final centerY = previewSize.height / 2;
+    transformController.value = Matrix4.identity()
+          ..translate(centerY, centerX)
+          ..rotateZ(pi / 2)
+          ..translate(-centerX, -centerY)
           ..scale(scale);
 
     return Align(
@@ -175,8 +175,8 @@ class PreviewFitWidget extends StatelessWidget {
           child: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: previewSize.width,
-              height: previewSize.height,
+              width: previewSize.height,
+              height: previewSize.width,
               child: child,
             ),
           ),
