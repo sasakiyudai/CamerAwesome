@@ -151,13 +151,10 @@ class PreviewFitWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final transformController = TransformationController();
-    final centerX = previewSize.width / 2;
-    final centerY = previewSize.height / 2;
     transformController.value = Matrix4.identity()
-          ..translate(centerY, centerX)
-          ..rotateZ(pi / 2)
-          ..translate(-centerX, -centerY)
-          ..scale(scale);
+        ..scale(scale)
+        ..rotateZ(pi / 2)
+        ..translate(0.0, -previewSize.width);
 
     return Align(
       alignment: alignment,
@@ -175,8 +172,8 @@ class PreviewFitWidget extends StatelessWidget {
           child: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: previewSize.height,
-              height: previewSize.width,
+              width: previewSize.width,
+              height: previewSize.height,
               child: child,
             ),
           ),
