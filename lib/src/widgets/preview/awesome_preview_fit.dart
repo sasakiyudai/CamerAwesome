@@ -172,8 +172,8 @@ class PreviewFitWidget extends StatelessWidget {
           child: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: previewSize.width,
-              height: previewSize.height,
+              width: previewSize.height,
+              height: previewSize.width,
               child: child,
             ),
           ),
